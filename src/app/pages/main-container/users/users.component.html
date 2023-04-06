@@ -1,0 +1,81 @@
+<div class="d-flex justify-content-between px-3 pt-3">
+  <h2 class="m-0 p-0">Users</h2>
+</div>
+
+<form class="d-flex mx-2 p-2">
+  <input
+    class="form-control me-2"
+    type="search"
+    placeholder="Search"
+    aria-label="Search"
+    [(ngModel)]="searchText"
+    (ngModelChange)="onValueChange($event)"
+    name="search"
+  />
+  <button class="btn btn-primary" (click)="pageChangeEvent()" type="button">
+    Search
+  </button>
+</form>
+
+<div class="row card-group m-1">
+  <div class="col-4" *ngFor="let user of userList">
+    <div
+      class="card item-card card-block container d-flex justify-content-between mb-4 p-4 cardHover"
+      [id]="user.id"
+    >
+      <div class="row">
+        <div class="col-4 mb-2">
+          <img
+            src="assets/images/avatar.jpg"
+            [alt]="user.name"
+            class="rounded-circle float-left profileImage"
+          />
+        </div>
+        <div class="col-8">
+          <br />
+          <h4 class="card-title text-right">
+            <i class="material-icons">{{ user.name }}</i>
+          </h4>
+          <p class="card-text">
+            <label class="form-label">Email : </label>
+            {{ user.email }}<br /><label class="form-label">User Type : </label>
+            {{ user.type }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="text-center" *ngIf="!userList.length">
+  <h4 class="card-title text-right">No results found</h4>
+</div> -->
+<footer class="d-flex justify-content-between m-2 px-2">
+  <div class="data">
+    <label for="users">Per page:</label>
+    <select
+      #rows
+      [(ngModel)]="selected"
+      class="form-select form-select-sm mx-2 w-50 h-50"
+      id="users"
+      (change)="pageChangeEvent()"
+    >
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="20">20</option>
+      <option value="50">50</option>
+      <option value="100">100</option>
+    </select>
+  </div>
+
+  <div>
+    <ngb-pagination
+      [collectionSize]="totalUsers"
+      [pageSize]="selected"
+      [(page)]="pages"
+      [boundaryLinks]="true"
+      (pageChange)="pageChangeEvent()"
+    >
+    </ngb-pagination>
+  </div>
+</footer>

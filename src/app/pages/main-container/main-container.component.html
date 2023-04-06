@@ -1,0 +1,89 @@
+<nav class="navbar sticky-top navbar-expand-sm navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <img src="assets/images/contacts.png" alt="App Logo" style="width: 40px"
+    /></a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#mynavbar"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mynavbar">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a
+            class="nav-link mt-1 h5"
+            href="#"
+            routerLink="home"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            >Home</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link mt-1 h5"
+            href="#"
+            routerLink="contacts"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            >Contacts</a
+          >
+        </li>
+        <li class="nav-item" *ngIf="userType">
+          <a
+            class="nav-link mt-1 h5"
+            href="#"
+            routerLink="users"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            >Users</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link mt-1 h5"
+            href="#"
+            routerLink="post"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            >Post</a
+          >
+        </li>
+      </ul>
+
+      <div class="d-flex">
+        <div class="text-white mt-2 p-1 h5">{{ user }}</div>
+        <div ngbDropdown class="d-flex">
+          <button
+            type="button"
+            class="btn btn-outline-primary"
+            id="dropdownBasic1"
+            ngbDropdownToggle
+          >
+            <img
+              src="assets/images/avatar.jpg"
+              alt="Avatar"
+              style="width: 40px"
+              class="rounded-pill"
+            />
+            <span class="caret"></span>
+          </button>
+          <div
+            ngbDropdownMenu
+            aria-labelledby="dropdownBasic1"
+            class="dropdown-menu-end"
+          >
+            <button routerLink="profile" ngbDropdownItem>Profile</button>
+            <hr />
+            <button (click)="logout()" ngbDropdownItem>Log out</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+<router-outlet></router-outlet>

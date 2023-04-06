@@ -1,0 +1,74 @@
+<div class="modal-header">
+  <h4 class="modal-title text-primary" id="modal-basic-title">
+    Contact Details
+  </h4>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="close()"
+  ></button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="contactForm">
+    <!-- Name input -->
+    <div class="form-floating mb-4">
+      <input
+        type="text"
+        id="name4"
+        class="form-control"
+        formControlName="name"
+      />
+      <label class="form-label" for="name4"
+        >Name<span class="required">*</span></label
+      >
+    </div>
+
+    <!-- Email input -->
+    <div class="form-floating mb-4">
+      <input
+        type="email"
+        id="email4"
+        class="form-control"
+        formControlName="email"
+      />
+      <label class="form-label" for="email4">Email address</label>
+    </div>
+
+    <!-- textarea input -->
+    <div class="form-floating mb-4">
+      <input
+        type="tel"
+        id="tel"
+        class="form-control"
+        formControlName="phoneNo"
+      />
+      <label class="form-label" for="tel"
+        >Phone No.<span class="required">*</span></label
+      >
+    </div>
+    <div class="form-outline">
+      <label class="btn btn-default p-0">
+        Upload Image :
+        <input
+          type="file"
+          accept="image/*"
+          (change)="selectFile($event)"
+          formControlName="image"
+        />
+      </label>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-primary" (click)="close()">
+    Cancel
+  </button>
+  <button
+    class="btn btn-outline-primary"
+    [disabled]="contactForm.invalid"
+    (click)="submit()"
+  >
+    Save
+  </button>
+</div>

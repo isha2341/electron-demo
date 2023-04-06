@@ -1,0 +1,13 @@
+<div class="card item-card card-block p-4 m-4">
+  <h4 class="card-title text-center">
+    <i class="material-icons">Total Contacts </i>
+  </h4>
+  <p class="card-text text-center fs-4">{{ totalContacts }}</p>
+</div>
+
+<div class="card item-card card-block p-4 m-4" *ngIf="userType">
+  <h4 class="card-title text-center">
+    <i class="material-icons">Total Users </i>
+  </h4>
+  <p class="card-text text-center fs-4">{{ totalUsers }}</p>
+</div>

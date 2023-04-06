@@ -1,0 +1,103 @@
+<div class="d-flex justify-content-between px-3 pt-3">
+  <h2 class="m-0 p-0">Contacts</h2>
+  <div class="d-flex" (click)="addNewContact()">
+    <i class="bi bi-plus-circle" style="font-size: 30px"></i>
+  </div>
+</div>
+
+<form class="d-flex mx-2 p-2">
+  <input
+    class="form-control me-2"
+    type="search"
+    placeholder="Search"
+    aria-label="Search"
+    [(ngModel)]="searchText"
+    (ngModelChange)="onValueChange($event)"
+    name="search"
+  />
+  <button class="btn btn-primary" (click)="pageChangeEvent()" type="button">
+    Search
+  </button>
+</form>
+
+<div class="row card-group m-1">
+  <div class="col-4" *ngFor="let contact of contactList">
+    <div
+      class="card item-card card-block container d-flex justify-content-between mb-4 p-4 cardHover"
+      [id]="contact.id"
+    >
+      <div class="row">
+        <div class="col-4 mb-2">
+          <img
+            [src]="
+              contact.image != '' ? contact.image : 'assets/images/profile.jpg'
+            "
+            [alt]="contact.name"
+            class="w-25 h-25 rounded-circle float-left profileImage"
+          />
+        </div>
+        <div class="col-8">
+          <h4 class="card-title text-right">
+            <i class="material-icons">{{ contact.name }}</i>
+          </h4>
+          <p class="card-text">
+            <label class="form-label">Phone No : </label> {{ contact.phoneNo
+            }}<br /><label class="form-label">Email : </label>
+            {{ contact.email }}
+          </p>
+        </div>
+        <div class="d-flex justify-content-end">
+          <button
+            type="button"
+            (click)="edit(contact.id)"
+            class="btn btn-primary btn-sm me-2"
+          >
+            Edit
+          </button>
+          <button
+            type="button"
+            (click)="delete(contact.id)"
+            class="btn btn-danger btn-sm"
+          >
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="text-center" *ngIf="!contactList.length">
+  <h4 class="card-title text-right">No results found</h4>
+</div>
+<footer class="d-flex justify-content-between m-2 px-2">
+  <div class="data">
+    <label for="contacts">Per page:</label>
+    <select
+      #rows
+      [(ngModel)]="selected"
+      class="form-select form-select-sm mx-2 w-50 h-50"
+      id="contacts"
+      (change)="pageChangeEvent()"
+    >
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="20">20</option>
+      <option value="50">50</option>
+      <option value="100">100</option>
+    </select>
+  </div>
+
+  <div>
+    <ngb-pagination
+      [collectionSize]="totalContacts"
+      [pageSize]="selected"
+      [(page)]="pages"
+      [boundaryLinks]="true"
+      (pageChange)="pageChangeEvent()"
+    >
+    </ngb-pagination>
+  </div>
+</footer>
+
+<!-- | slice : (pages - 1) * selected : pages * selected -->

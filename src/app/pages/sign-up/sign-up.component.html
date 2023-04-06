@@ -1,0 +1,159 @@
+<div class="vh-100 d-flex justify-content-center align-items-center">
+  <div class="container">
+    <div class="row d-flex justify-content-center">
+      <div class="col-12 col-md-8 col-lg-5">
+        <div class="card bg-white shadow-lg">
+          <div class="card-body p-5">
+            <form
+              [formGroup]="registerForm"
+              (ngSubmit)="onSubmit()"
+              class="mb-3"
+            >
+              <h2 class="fw-bold mb-4 text-uppercase text-center text-primary">
+                Sign Up
+              </h2>
+              <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <span class="required">*</span>
+                <input
+                  type="text"
+                  class="form-control"
+                  [class.invalid-input]="
+                    f('name')?.touched && f('name')?.errors
+                  "
+                  id="name"
+                  formControlName="name"
+                  placeholder="Enter Full Name"
+                />
+                <div
+                  *ngIf="f('name')?.touched && f('name')?.errors"
+                  class="invalid-feedback d-block"
+                >
+                  <div *ngIf="f('name')?.errors?.required">
+                    Full Name is required
+                  </div>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <span class="required">*</span>
+                <input
+                  type="email"
+                  class="form-control"
+                  email="true"
+                  [class.invalid-input]="
+                    f('email')?.touched && f('email')?.errors
+                  "
+                  id="email"
+                  formControlName="email"
+                  placeholder="name@example.com"
+                />
+                <div
+                  *ngIf="f('email')?.touched && f('email')?.errors"
+                  class="invalid-feedback d-block"
+                >
+                  <div *ngIf="f('email')?.errors?.required">
+                    Email is required
+                  </div>
+                  <div *ngIf="f('email')?.errors?.email">
+                    Enter valid email address
+                  </div>
+                  <div *ngIf="f('email')?.errors?.matching">
+                    Email Already Registered.
+                  </div>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <span class="required">*</span>
+                <input
+                  type="password"
+                  class="form-control"
+                  [class.invalid-input]="
+                    f('password')?.touched && f('password')?.errors
+                  "
+                  id="password"
+                  formControlName="password"
+                  placeholder="*******"
+                />
+                <div
+                  *ngIf="f('password')?.touched && f('password')?.errors"
+                  class="invalid-feedback d-block"
+                >
+                  <div *ngIf="f('password')?.errors?.required">
+                    Password is required
+                  </div>
+                  <div *ngIf="f('password')?.errors?.pattern">
+                    Password does not match the pattern
+                  </div>
+                  <div class="descr">
+                    <small>
+                      Password should be of 8 to 12 characters including a
+                      capital letter,a small letter, a number and a special
+                      symbol</small
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="confirmPassword" class="form-label"
+                  >Confirm Password</label
+                >
+                <span class="required">*</span>
+                <input
+                  type="password"
+                  class="form-control"
+                  [class.invalid-input]="
+                    f('confirmPassword')?.touched &&
+                    f('confirmPassword')?.errors
+                  "
+                  id="confirmPassword"
+                  formControlName="confirmPassword"
+                  placeholder="*******"
+                />
+                <div
+                  *ngIf="
+                    f('confirmPassword')?.touched &&
+                    f('confirmPassword')?.errors
+                  "
+                  class="invalid-feedback d-block"
+                >
+                  <div *ngIf="f('confirmPassword')?.errors?.required">
+                    Confirm your password
+                  </div>
+                  <div *ngIf="f('confirmPassword')?.errors?.matching">
+                    Password does not match
+                  </div>
+                </div>
+              </div>
+              <div class="d-grid">
+                <button
+                  class="btn btn-outline-primary"
+                  type="submit"
+                  [disabled]="registerForm.invalid"
+                >
+                  Sign Up
+                </button>
+              </div>
+            </form>
+            <div>
+              <p class="mb-0 text-center">
+                Already have an account?
+                <a
+                  routerLink="/login"
+                  routerLinkActive="active"
+                  ariaCurrentWhenActive="page"
+                  class="text-primary fw-bold"
+                  >Login</a
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- routerLink="/signUp"
+                  routerLinkActive="active"
+                  ariaCurrentWhenActive="page" -->

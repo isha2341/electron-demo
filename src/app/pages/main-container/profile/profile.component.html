@@ -1,0 +1,139 @@
+<div class="row">
+  <div class="col-2 p-5">
+    <img
+      src="assets/images/avatar.jpg"
+      alt="Avatar"
+      class="rounded-circle profileImage"
+    />
+    <h4 class="card-title text-right">
+      <i class="material-icons">{{ username }}</i
+      ><br />
+    </h4>
+    <label class="form-label">Email : {{ mail }} </label>
+  </div>
+  <div class="line col-6 p-4">
+    <form [formGroup]="changeName" (ngSubmit)="setName()" class="mb-3">
+      <h2 class="fw-bold mt-5 pt-4">Change Name</h2>
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <span class="required">*</span>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          formControlName="name"
+          placeholder="Enter New Name"
+        />
+        <div
+          *ngIf="f('name')?.touched && f('name')?.errors"
+          class="invalid-feedback d-block"
+        >
+          <div *ngIf="f('name')?.errors?.required">Name required</div>
+        </div>
+      </div>
+      <div class="d-grid">
+        <button
+          class="btn btn-primary w-50"
+          type="submit"
+          [disabled]="changeName.invalid"
+        >
+          Change Name
+        </button>
+      </div>
+    </form>
+
+    <form [formGroup]="changePassword" (ngSubmit)="setPassword()" class="mb-3">
+      <h2 class="fw-bold mt-3 pt-4">Change Password</h2>
+      <div class="mb-3">
+        <label for="oldPassword" class="form-label">Old Password</label>
+        <span class="required">*</span>
+        <input
+          type="password"
+          class="form-control"
+          [class.invalid-input]="
+            g('oldPassword')?.touched && g('oldPassword')?.errors
+          "
+          id="oldPassword"
+          formControlName="oldPassword"
+          placeholder="*******"
+        />
+        <div
+          *ngIf="g('oldPassword')?.touched && g('oldPassword')?.errors"
+          class="invalid-feedback d-block"
+        >
+          <div *ngIf="g('oldPassword')?.errors?.required">
+            old password is required
+          </div>
+          <div *ngIf="g('oldPassword')?.errors?.matching">
+            Password does not match
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">New Password</label>
+        <span class="required">*</span>
+        <input
+          type="password"
+          class="form-control"
+          [class.invalid-input]="
+            g('password')?.touched && g('password')?.errors
+          "
+          id="password"
+          formControlName="password"
+          placeholder="*******"
+        />
+        <div
+          *ngIf="g('password')?.touched && g('password')?.errors"
+          class="invalid-feedback d-block"
+        >
+          <div *ngIf="g('password')?.errors?.required">
+            Password is required
+          </div>
+          <div *ngIf="g('password')?.errors?.pattern">
+            Password does not match the pattern
+          </div>
+          <div class="descr">
+            <small>
+              Password should be of 8 to 12 characters including a capital
+              letter,a small letter, a number and a special symbol</small
+            >
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="confirmPassword" class="form-label">Confirm Password</label>
+        <span class="required">*</span>
+        <input
+          type="password"
+          class="form-control"
+          [class.invalid-input]="
+            g('confirmPassword')?.touched && g('confirmPassword')?.errors
+          "
+          id="confirmPassword"
+          formControlName="confirmPassword"
+          placeholder="*******"
+        />
+        <div
+          *ngIf="g('confirmPassword')?.touched && g('confirmPassword')?.errors"
+          class="invalid-feedback d-block"
+        >
+          <div *ngIf="g('confirmPassword')?.errors?.required">
+            Confirm your password
+          </div>
+          <div *ngIf="g('confirmPassword')?.errors?.matching">
+            Password does not match
+          </div>
+        </div>
+      </div>
+      <div class="d-grid">
+        <button
+          class="btn btn-primary w-50"
+          type="submit"
+          [disabled]="changePassword.invalid"
+        >
+          Change Password
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
